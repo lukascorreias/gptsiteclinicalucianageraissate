@@ -854,7 +854,7 @@ h1 em,.section-heading h2 em,.about-copy h2 em,.contact-copy h2 em{font-size:var
   .mobile-whatsapp{right:16px;bottom:max(16px,env(safe-area-inset-bottom))}
 }
 
-/* A single, gently curved route connects the three steps. */
+/* A single, gently curved route connects the four stages. */
 .care-process{position:relative;margin:0 0 44px;isolation:isolate}
 .care-process-path{position:absolute;z-index:0;top:0;left:50%;width:min(1920px,calc(100vw - 18px));height:180px;transform:translateX(-50%);overflow:visible;pointer-events:none}
 .care-process-path path{fill:none;stroke:var(--process-line);stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 4px 3px rgba(75,51,40,.22))}
@@ -1068,6 +1068,64 @@ h1 em,.section-heading h2 em,.about-copy h2 em,.contact-copy h2 em{font-size:var
 .impact-metrics p{min-width:0;margin:0;display:grid;justify-items:center;gap:4px}
 .impact-metrics strong{display:block;background:var(--stats-gold-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#997449;font-size:clamp(26px,2.7vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.05em;white-space:nowrap}
 .impact-metrics span{color:var(--forest);font-size:clamp(11px,1vw,14px);font-weight:500;line-height:1.25;white-space:nowrap}
-.impact-metrics small{grid-column:1/-1;margin-top:6px;color:var(--coffee);font-size:10px;line-height:1;opacity:.65}
-@media(max-width:760px){.impact-metrics{top:18px;width:calc(100% - 28px);column-gap:8px}.impact-metrics p{gap:2px}.impact-metrics strong{font-size:clamp(23px,6vw,30px)}.impact-metrics span{font-size:11px}}
+.impact-metrics small{grid-column:1/-1;margin-top:6px;color:var(--coffee);font-size:13px;line-height:1.2;opacity:.75}
+@media(max-width:760px){.impact-metrics{top:18px;width:calc(100% - 28px);column-gap:8px}.impact-metrics p{gap:2px}.impact-metrics strong{font-size:clamp(23px,6vw,30px)}.impact-metrics span{font-size:13px}}
 @media(forced-colors:active){.impact-metrics strong{background:none;-webkit-text-fill-color:CanvasText;color:CanvasText}}
+
+/* Four care stages follow the same gentle curve. */
+@media(min-width:1001px){
+  .method-section .care-timeline{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .method-section .care-timeline li:nth-child(2),
+  .method-section .care-timeline li:nth-child(3){padding-top:85px}
+}
+@media(min-width:761px) and (max-width:1000px){
+  .method-section .care-timeline{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px}
+  .method-section .care-timeline li,
+  .method-section .care-timeline li:nth-child(2),
+  .method-section .care-timeline li:nth-child(3){padding-top:20px}
+  .care-process-path{display:none}
+}
+
+/* The additional resource stays readable on desktop and tablet. */
+@media(min-width:1001px){.method-section .resource-list{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(min-width:761px) and (max-width:1000px){.method-section .resource-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Give the larger attendance figure the lead without changing the facts. */
+.impact-metrics p:first-child strong{font-size:clamp(29px,3vw,44px)}
+@media(max-width:760px){.impact-metrics p:first-child strong{font-size:clamp(24px,6.2vw,31px)}}
+
+/* Use the lossless brand artwork without enlarging rendered pixels. */
+.topbar-brand{aspect-ratio:4056/2858;overflow:hidden}
+.topbar-brand img{width:197.24%;height:auto;max-width:none;transform:translate(-24.725%,-18.222%)}
+@media(max-width:1000px){.topbar-brand{width:88px}}
+
+/* Give pictograms more of their native canvas inside each circle. */
+:root{--icon-art-size:78%;--treatment-icon-art-size:90%;--resource-icon-art-size:52px;--hero-icon-size:30px}
+.page-frame .hero-stats>div .pillar-icon,
+.page-frame .hero-stats>div:nth-child(even) .pillar-icon{width:40px;height:40px}
+.page-frame .hero-stats .pillar-icon img{width:var(--hero-icon-size);height:var(--hero-icon-size)}
+.method-section .care-timeline .brand-pictogram{width:72%;height:72%}
+@media(max-width:760px){
+  :root{--resource-icon-art-size:48px;--hero-icon-size:28px}
+  .page-frame .hero-stats>div .pillar-icon,
+  .page-frame .hero-stats>div:nth-child(even) .pillar-icon{width:36px;height:36px}
+}
+
+/* Text stays at its natural raster size when a card becomes active. */
+.method-section .care-timeline li.is-active .timeline-copy{transform:none}
+.method-section .care-timeline p,.method-section .care-timeline li.is-active p{font-size:16px}
+.method-section .resource-item p{font-size:15px}
+.hero-stats strong,.testimonial-avatar{font-weight:600}
+.treatment-steps button:hover,.page-frame .complaint-tabs button[aria-selected="true"]:hover{transform:none}
+@media(min-width:1001px) and (hover:hover){
+  .method-section .resource-item:hover,
+  .method-section .resource-item:nth-child(2):hover,
+  .method-section .resource-item:nth-child(3):hover{transform:translateY(-4px)}
+}
+.page-frame .method-section .care-timeline li.is-active .timeline-symbol{transform:none}
+.pain-carousel.is-ready .pain-card:not(.is-active)>.treatment-icon,
+.pain-carousel.is-ready .pain-card:not(.is-active)>.treatment-title{opacity:1}
+
+/* Keep every desktop complaint option visible without a horizontal scrollbar. */
+.page-frame .complaint-tabs{width:max-content;max-width:calc(100% - 40px);flex-wrap:wrap;justify-content:center;gap:8px;overflow:visible;scrollbar-width:none;padding:8px 4px 6px}
+.page-frame .complaint-tabs button{padding-inline:12px;font-size:clamp(14px,1.05vw,15px)}

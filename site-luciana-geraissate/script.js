@@ -54,7 +54,7 @@ document.querySelectorAll('.faq-item button').forEach((button) => {
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealItems = document.querySelectorAll('.reveal');
 
-// Keep the three care steps visible while moving the emphasis along the path.
+// Keep the care steps visible while moving the emphasis along the path.
 const careSteps = [...document.querySelectorAll('.care-timeline li')];
 const careProcess = document.querySelector('.care-process');
 let activeCareStep = 0;
@@ -124,12 +124,13 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
 
 // Complaint tabs and cards share a single selection. There is no autoplay.
 const treatmentStepContent = [
-  [['aliviar para começar','as técnicas manuais ajudam a diminuir o desconforto e preparam o corpo para os exercícios.'],['mover com segurança','os exercícios são ajustados à sua resposta para ganhar movimento e força aos poucos.'],['entender a dor','você aprende a reconhecer os sinais do corpo e a seguir ativo na rotina.']],
-  [['recuperar o movimento','trabalhamos a mobilidade da articulação sem forçar além do que ela tolera.'],['fortalecer com cuidado','os exercícios aumentam de dificuldade conforme seu movimento melhora.'],['medir a evolução','comparamos a força ao longo do plano para orientar os próximos exercícios.']],
+  [['aliviar para começar','as técnicas manuais ajudam a diminuir o desconforto e preparam o corpo para os exercícios.'],['mover com segurança','os exercícios são ajustados à sua resposta para ganhar movimento e força aos poucos.'],['entender a dor','você entende como a dor funciona e por que ela nem sempre significa lesão.']],
+  [['entender o seu caso','avaliamos quando a dor aparece, como você se move e o que ela dificulta na sua rotina.'],['retomar o movimento','os exercícios são ajustados à sua resposta para recuperar força e mobilidade.'],['entender a dor','você entende como a dor funciona e ganha recursos para seguir ativo na rotina.']],
+  [['recuperar o movimento','trabalhamos a mobilidade respeitando a tolerância da articulação.'],['fortalecer com cuidado','os exercícios aumentam de dificuldade conforme seu movimento melhora.'],['medir a evolução','comparamos a força ao longo do plano para orientar os próximos exercícios.']],
   [['medir o ponto de partida','testes de força mostram o que ainda precisa de atenção antes da volta.'],['treinar o movimento','exercícios graduais ajudam a recuperar estabilidade e confiança.'],['preparar o retorno','novos testes ajudam a decidir quando avançar para a atividade desejada.']],
   [['começar com apoio','os movimentos são adaptados à sua força e ao seu equilíbrio de hoje.'],['ganhar força na rotina','exercícios trabalham músculos usados para caminhar, levantar e carregar objetos.'],['treinar o equilíbrio','praticamos movimentos do dia a dia com apoio e progressão gradual.']],
   [['cuidar do inchaço','quando indicada, a drenagem pode ajudar a aliviar o inchaço após a cirurgia.'],['recuperar o movimento','técnicas manuais e exercícios respeitam a fase da sua recuperação.'],['reconstruir a força','a carga aumenta aos poucos, conforme a resposta do corpo e a orientação médica.']],
-  [['medir o ponto de partida','avaliamos força e movimento para encontrar áreas que precisam de atenção.'],['montar um plano preventivo','com os resultados, escolhemos exercícios para reduzir o risco de novas lesões.']]
+  [['medir o ponto de partida','avaliamos força e movimento para encontrar áreas que precisam de atenção.'],['orientar os exercícios','com os resultados, escolhemos exercícios para trabalhar os déficits encontrados.']]
 ];
 document.querySelectorAll('.treatment-steps').forEach((steps, cardIndex) => {
   const buttons = [...steps.querySelectorAll('button[data-step]')];
@@ -246,7 +247,7 @@ document.querySelectorAll('[data-pain-carousel]').forEach((carousel) => {
     current = target;
     if (manual) hasInteracted = true;
     sync();
-    if (manual) announcement.textContent = `${current + 1} de 6: ${tabs[current].textContent}`;
+    if (manual) announcement.textContent = `${current + 1} de ${cards.length}: ${tabs[current].textContent}`;
     if (motion.matches || Math.abs(distance) < .001) {
       phase = current; draw(phase); measureHeight(); return;
     }
